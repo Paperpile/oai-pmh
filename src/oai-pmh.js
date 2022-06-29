@@ -74,6 +74,10 @@ export class OaiPmh {
       }
     } while (res.statusCode === 503 && this.options.retry)
 
+    if (res.statusCode === 400) {
+      res.statusCode = /<error code="400">noRecordsMatch<\/error>/.test(res.body) ? 200 : res.statusCode;
+    }
+
     if (res.statusCode !== 200) {
       throw new OaiPmhError(
         `Unexpected status code ${res.statusCode} (expected 200).`

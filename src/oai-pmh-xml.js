@@ -5,7 +5,7 @@ import { parseString } from 'xml2js'
 import { OaiPmhError } from './errors'
 
 // test if the parsed xml contains an error
-export async function parseOaiPmhXml (xml) {
+export async function parseOaiPmhXml(xml) {
   // parse xml into js object
   const obj = await promisify(parseString)(xml, {
     explicitArray: false,
@@ -21,10 +21,14 @@ export async function parseOaiPmhXml (xml) {
 
   const error = oaiPmh.error
   if (error) {
-    throw new OaiPmhError(
-      `OAI-PMH provider returned an error: ${error._}`,
-      get(error, '$.code')
-    )
+    if (error._ === 'noRecordsMatch') {
+      oaiPmh.ListRecords = { record: [] }
+    } else {
+      throw new OaiPmhError(
+        `OAI-PMH provider returned an error: ${error._}`,
+        get(error, '$.code')
+      )
+    }
   }
 
   return oaiPmh
