@@ -41,9 +41,10 @@
   "dependencies": {
     "commander": "^2.19.0",
     "esm": "^3.2.4",
+    "fast-xml-parser": "^4.0.8",
+    "he": "^1.2.0",
     "lodash": "^4.17.11",
-    "request": "^2.88.0",
-    "xml2js": "^0.4.16"
+    "request": "^2.88.0"
   },
   "standard": {
     "env": {
