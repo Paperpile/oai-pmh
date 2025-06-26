@@ -1,2 +1,7 @@
-export { OaiPmh } from './oai-pmh'
-export { OaiPmhError } from './errors'
+const { OaiPmh } = require('./oai-pmh')
+const { OaiPmhError } = require('./errors')
+
+module.exports = {
+  OaiPmh,
+  OaiPmhError
+}

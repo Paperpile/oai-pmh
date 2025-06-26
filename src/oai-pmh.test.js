@@ -1,7 +1,7 @@
-import { nockFixtures } from '../test/nock'
+const { nockFixtures } = require('../test/nock')
 
-import { OaiPmhError } from './errors'
-import { OaiPmh } from './oai-pmh'
+const { OaiPmhError } = require('./errors')
+const { OaiPmh } = require('./oai-pmh')
 
 const arxivBaseUrl = 'http://export.arxiv.org/oai2'
 const exlibrisBaseUrl = 'http://bibsys-network.alma.exlibrisgroup.com/view/oai/47BIBSYS_NETWORK/request'

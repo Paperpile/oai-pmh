@@ -1,5 +1,5 @@
 // error class for OAI-PMH errors
-export class OaiPmhError extends Error {
+class OaiPmhError extends Error {
   constructor (message, code) {
     super(message)
     this.name = this.constructor.name
@@ -7,4 +7,8 @@ export class OaiPmhError extends Error {
     this.code = code
     Error.captureStackTrace(this, this.constructor.name)
   }
+}
+
+module.exports = {
+  OaiPmhError
 }

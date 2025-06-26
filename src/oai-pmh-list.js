@@ -1,6 +1,6 @@
-import { get } from 'lodash'
+const { get } = require('lodash')
 
-import { parseOaiPmhXml } from './oai-pmh-xml'
+const { parseOaiPmhXml } = require('./oai-pmh-xml')
 
 function getResumptionToken (result, listSize) {
   const token = result.resumptionToken
@@ -19,7 +19,7 @@ function getResumptionToken (result, listSize) {
   return token._
 }
 
-export async function * getOaiListItems (oaiPmh, verb, field, options) {
+async function * getOaiListItems (oaiPmh, verb, field, options) {
   const initialResponse = await oaiPmh.request({
     url: oaiPmh.baseUrl,
     qs: {
@@ -50,4 +50,8 @@ export async function * getOaiListItems (oaiPmh, verb, field, options) {
       yield item
     }
   }
+}
+
+module.exports = {
+  getOaiListItems
 }

@@ -1,8 +1,8 @@
-import { get } from 'lodash'
-import parser from 'fast-xml-parser'
-import { decode } from 'he'
+const { get } = require('lodash')
+const parser = require('fast-xml-parser')
+const { decode } = require('he')
 
-import { OaiPmhError } from './errors'
+const { OaiPmhError } = require('./errors')
 
 function decodeHtmlEntities(obj) {
   if (typeof obj === 'number' || typeof obj === 'boolean') return obj;
@@ -46,6 +46,10 @@ async function parseUsingFastParser(xml) {
   return decodeHtmlEntities(oaiPmh);
 }
 
-export async function parseOaiPmhXml(xml) {
+async function parseOaiPmhXml(xml) {
   return parseUsingFastParser(xml);
+}
+
+module.exports = {
+  parseOaiPmhXml
 }

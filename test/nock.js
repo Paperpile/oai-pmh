@@ -1,10 +1,10 @@
-import { back as nockBack } from 'nock'
-import path from 'path'
+const nock = require('nock')
+const path = require('path')
 
 // based on https://github.com/porchdotcom/nock-back-mocha/
 const nockFixtureDir = path.resolve(__dirname, './nock-fixtures')
 
-export const nockFixtures = function (dir = nockFixtureDir, timeout = 15000) {
+const nockFixtures = function (dir = nockFixtureDir, timeout = 15000) {
   const filenames = []
   return {
     beforeEach (cb) {
@@ -19,7 +19,7 @@ export const nockFixtures = function (dir = nockFixtureDir, timeout = 15000) {
       filename = `${filename.toLowerCase().replace(/[^a-z0-9]/gi, '-')}.json`
 
       // use provided timeout when not in lockdown mode
-      if (nockBack.currentMode !== 'lockdown') {
+      if (nock.back.currentMode !== 'lockdown') {
         test.timeout(test.timeout() + timeout)
       }
 
@@ -28,9 +28,9 @@ export const nockFixtures = function (dir = nockFixtureDir, timeout = 15000) {
       }
       filenames.push(filename)
 
-      nockBack.fixtures = dir
+      nock.back.fixtures = dir
 
-      nockBack(filename, (nockDone) => {
+      nock.back(filename, (nockDone) => {
         test.nockDone = nockDone
         cb()
       })
@@ -39,4 +39,8 @@ export const nockFixtures = function (dir = nockFixtureDir, timeout = 15000) {
       this.currentTest.nockDone()
     }
   }
+}
+
+module.exports = {
+  nockFixtures
 }

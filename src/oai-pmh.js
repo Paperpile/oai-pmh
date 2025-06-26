@@ -1,15 +1,15 @@
-import { assign, get } from 'lodash'
-import request from 'request'
-import { promisify } from 'util'
+const { assign, get } = require('lodash')
+const request = require('request')
+const { promisify } = require('util')
 
-import pkg from '../package.json'
-import { OaiPmhError } from './errors'
-import { getOaiListItems } from './oai-pmh-list'
-import { parseOaiPmhXml } from './oai-pmh-xml'
-import { sleep } from './utils'
+const pkg = require('../package.json')
+const { OaiPmhError } = require('./errors')
+const { getOaiListItems } = require('./oai-pmh-list')
+const { parseOaiPmhXml } = require('./oai-pmh-xml')
+const { sleep } = require('./utils')
 
 // main class
-export class OaiPmh {
+class OaiPmh {
   constructor (baseUrl, _options = {}) {
     this.baseUrl = baseUrl
 
@@ -149,4 +149,8 @@ export class OaiPmh {
   listSets () {
     return getOaiListItems(this, 'ListSets', 'set')
   }
+}
+
+module.exports = {
+  OaiPmh
 }

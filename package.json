@@ -2,11 +2,11 @@
   "name": "oai-pmh",
   "version": "2.0.3",
   "description": "OAI-PMH harvester module for nodejs",
-  "main": "src/index-entry.js",
+  "main": "src/index.js",
   "scripts": {
     "cover": "nyc npm test",
     "lint": "standard",
-    "test": "mocha -r should -r esm 'src/**/*.test.js' 'test/**/*.js'",
+    "test": "mocha -r should 'src/**/*.test.js' 'test/**/*.js'",
     "test-cover": "nyc npm test",
     "test-cover-submit": "nyc report --reporter=json && codecov -f coverage/*.json"
   },
@@ -40,7 +40,6 @@
   },
   "dependencies": {
     "commander": "^2.19.0",
-    "esm": "^3.2.4",
     "fast-xml-parser": "^4.0.8",
     "he": "^1.2.0",
     "lodash": "^4.17.11",

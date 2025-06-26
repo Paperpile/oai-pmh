@@ -1,8 +1,8 @@
-import { pick } from 'lodash'
-import program from 'commander'
+const { pick } = require('lodash')
+const program = require('commander')
 
-import { OaiPmh } from '../'
-import pkg from '../package.json'
+const { OaiPmh } = require('../')
+const pkg = require('../package.json')
 
 program.version(pkg.version)
 
