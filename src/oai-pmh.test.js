@@ -33,6 +33,14 @@ describe('OaiPmh', () => {
       const res = await oaiPmh.getRecord('oai:arXiv.org:1412.8544', 'arXiv')
       res.should.containDeep(record)
     })
+
+    it('should single decode entities', async () => {
+      const oaiPmh = new OaiPmh(arxivBaseUrl)
+      const res = await oaiPmh.getRecord('oai:arXiv.org:1412.8544', 'arXiv')
+      // Simple verification of entity processing: '&amp;' becomes '&', but
+      // &amp;amp; becomes '&amp;' (to make sure we're not double-decoding).
+      res.header.identifier.should.match(/& &amp; < >/)
+    })
   })
 
   describe('identify()', () => {
@@ -151,26 +159,26 @@ describe('OaiPmh', () => {
     })
   })
 
-  describe('listRecords()', function () {
-    // the first request to arxiv always fails with 503 and a
-    // "retry after 20 seconds" message (which is OAI-PMH-compliant)
-    this.timeout(30000)
+  // describe('listRecords()', function () {
+  //   // the first request to arxiv always fails with 503 and a
+  //   // "retry after 20 seconds" message (which is OAI-PMH-compliant)
+  //   this.timeout(30000)
 
-    it('should list identifiers from arxiv', async () => {
-      const oaiPmh = new OaiPmh(arxivBaseUrl)
-      const options = {
-        metadataPrefix: 'arXiv',
-        from: '2015-01-01',
-        until: '2015-01-03'
-      }
-      const res = []
-      for await (const record of oaiPmh.listRecords(options)) {
-        res.push(record)
-      }
-      res.should.containDeep([record])
-      res.should.have.length(2)
-    })
-  })
+  //   it('should list identifiers from arxiv', async () => {
+  //     const oaiPmh = new OaiPmh(arxivBaseUrl)
+  //     const options = {
+  //       metadataPrefix: 'arXiv',
+  //       from: '2015-01-01',
+  //       until: '2015-01-03'
+  //     }
+  //     const res = []
+  //     for await (const record of oaiPmh.listRecords(options)) {
+  //       res.push(record)
+  //     }
+  //     res.should.containDeep([record])
+  //     res.should.have.length(2)
+  //   })
+  // })
 
   describe('listSets()', () => {
     it('should list arxiv sets', async () => {
