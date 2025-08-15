@@ -1,6 +1,5 @@
 const { get } = require('lodash')
 const { XMLParser } = require('fast-xml-parser')
-const { decode } = require('he')
 
 const { OaiPmhError } = require('./errors')
 
