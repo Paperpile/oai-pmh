@@ -1,0 +1,24 @@
+[
+    {
+        "scope": "http://export.arxiv.org:80",
+        "method": "GET",
+        "path": "/oai2?verb=GetRecord&identifier=oai%3AarXiv.org%3A1412.8544&metadataPrefix=arXiv",
+        "body": "",
+        "status": 200,
+        "response": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<OAI-PMH xmlns=\"http://www.openarchives.org/OAI/2.0/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd\">\n<responseDate>2018-06-21T14:30:12Z</responseDate>\n<request verb=\"GetRecord\" identifier=\"oai:arXiv.org:1412.8544\" metadataPrefix=\"arXiv\">http://export.arxiv.org/oai2</request>\n<GetRecord>\n<record>\n<header>\n <identifier>&amp; &amp;amp; &lt; &gt;</identifier></header></record></GetRecord></xml>\n",
+        "rawHeaders": [
+            "Date",
+            "Thu, 21 Jun 2018 14:30:10 GMT",
+            "Server",
+            "Apache",
+            "Vary",
+            "Accept-Encoding,User-Agent",
+            "Connection",
+            "close",
+            "Transfer-Encoding",
+            "chunked",
+            "Content-Type",
+            "text/xml"
+        ]
+    }
+]

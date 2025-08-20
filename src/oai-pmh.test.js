@@ -33,6 +33,14 @@ describe('OaiPmh', () => {
       const res = await oaiPmh.getRecord('oai:arXiv.org:1412.8544', 'arXiv')
       res.should.containDeep(record)
     })
+
+    it('should single decode entities', async () => {
+      const oaiPmh = new OaiPmh(arxivBaseUrl)
+      const res = await oaiPmh.getRecord('oai:arXiv.org:1412.8544', 'arXiv')
+      // Simple verification of entity processing: '&amp;' becomes '&', but
+      // &amp;amp; becomes '&amp;' (to make sure we're not double-decoding).
+      res.header.identifier.should.match(/& &amp; < >/)
+    })
   })
 
   describe('identify()', () => {
